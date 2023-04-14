@@ -83,7 +83,7 @@ namespace SomethingList
                 {
                     WriteLine("\nGebe eine Zahl zwischen 0 und 100 ein:");
                     var guess = ReadLine();
-                    try { zahlGuess = Convert.ToInt32(guess); break; } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
+                    try { zahlGuess = Convert.ToInt32(guess); if (zahlGuess >= 0 && zahlGuess <= 100) { break; } } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
                 }
                 if (zahlGuess == rndZahl)
                 {
