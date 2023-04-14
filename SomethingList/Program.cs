@@ -7,8 +7,36 @@ namespace SomethingList
     {
         static void Main(string[] args)
         {
-            Programm3.Main1();
-            ReadKey();
+            while (true)
+            {
+                Clear();
+                WriteLine("Press the key to run the according program.");
+                WriteLine("-------------------------------------------");
+                WriteLine("'1'\t6 aus 49.");
+                WriteLine("'2'\tZahlen raten.");
+                WriteLine("'3'\tZahlen erraten lassen.");
+                WriteLine("'0'\tProgramm beenden.");
+                WriteLine("-------------------------------------------");
+                char select = ReadKey().KeyChar;
+                switch (select)
+                {
+                    case '0':
+                        Environment.Exit(42);
+                        break;
+                    case '1':
+                        Clear();
+                        Programm1.Main1();
+                        break;
+                    case '2':
+                        Clear();
+                        Programm2.Main1();
+                        break;
+                    case '3':
+                        Clear();
+                        Programm3.Main1();
+                        break;
+                }
+            }
         }
 
         static void Test()
@@ -44,6 +72,7 @@ namespace SomethingList
             {
                 WriteLineColor($"<*green*>{zahl}<*/*>");
             }
+            ReadKey();
         }
         public static List<int> ListeErstellen()
         {
@@ -70,14 +99,15 @@ namespace SomethingList
         }
     }
     public class Programm2
-    { 
+    {
         public static void Main1()
         {
             WriteLine("Zahlen Raten:");
             int zahlGuess;
             var i = 0;
             var rndZahl = RandomNumber();
-            while (true) {
+            while (true)
+            {
                 i++;
                 while (true)
                 {
@@ -89,20 +119,23 @@ namespace SomethingList
                 {
                     WriteLine($"Du hast die Zahl {rndZahl} richtig erraten.\nDu hast {i} Versuche gebraucht.");
                     break;
-                }else if (zahlGuess > rndZahl)
+                }
+                else if (zahlGuess > rndZahl)
                 {
                     WriteLine("Die gesuchte Zahl ist niedriger.");
-                }else
+                }
+                else
                 {
                     WriteLine("Die gesuchte Zahl ist größer.");
                 }
                 WriteLine("\n----------------------------------------------");
             }
+            ReadKey();
         }
         static int RandomNumber()
         {
             var rnd = new Random();
-            return rnd.Next(0, 100+1);
+            return rnd.Next(0, 100 + 1);
         }
     }
     public class Programm3
@@ -118,6 +151,7 @@ namespace SomethingList
                 try { rndZahl = Convert.ToInt32(rndInput); if (rndZahl >= 0 && rndZahl <= 100) { break; } } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
             }
             ZahlErraten(rndZahl);
+            ReadKey();
         }
         static void ZahlErraten(int rndZahl)
         {
