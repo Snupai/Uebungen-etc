@@ -7,8 +7,7 @@ namespace SomethingList
     {
         static void Main(string[] args)
         {
-            Programm1.Main1();
-            Programm2.Main1();
+            Programm3.Main1();
             ReadKey();
         }
 
@@ -75,16 +74,85 @@ namespace SomethingList
         static int zahlGuess;
         public static void Main1()
         {
+            WriteLine("Zahlen Raten:");
+            var i = 0;
+            var rndZahl = RandomNumber();
             while (true) {
-                WriteLine("Zahlen Raten:\nGebe eine Zahl zwischen 0 und 100 ein:");
-                var guess = ReadLine();
-                try { zahlGuess = Convert.ToInt32(guess); } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
-                if (zahGuess == )
+                i++;
+                while (true)
                 {
+                    WriteLine("\nGebe eine Zahl zwischen 0 und 100 ein:");
+                    var guess = ReadLine();
+                    try { zahlGuess = Convert.ToInt32(guess); break; } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
+                }
+                if (zahlGuess == rndZahl)
+                {
+                    WriteLine($"Du hast die Zahl {rndZahl} richtig erraten.\nDu hast {i} Versuche gebraucht.");
                     break;
+                }else if (zahlGuess > rndZahl)
+                {
+                    WriteLine("Die gesuchte Zahl ist niedriger.");
+                }else
+                {
+                    WriteLine("Die gesuchte Zahl ist größer.");
+                }
+                WriteLine("\n----------------------------------------------");
+            }
+        }
+        static int RandomNumber()
+        {
+            var rnd = new Random();
+            return rnd.Next(0, 100+1);
+        }
+    }
+    public class Programm3
+    {
+        public static void Main1()
+        {
+            WriteLine("Zahlen Raten lassen:");
+            int rndZahl;
+            while (true)
+            {
+                WriteLine("\nGebe eine Zahl zwischen 0 und 100 ein:");
+                var rndInput = ReadLine();
+                try { rndZahl = Convert.ToInt32(rndInput); break; } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
+            }
+            ZahlErraten(rndZahl);
+        }
+        static void ZahlErraten(int rndZahl)
+        {
+            List<int> guessed = new();
+            var i = 0;
+            var zahlGuess = 100;
+            zahlGuess /= 2;
+            var leZahl = zahlGuess;
+            guessed.Add(zahlGuess);
+            while (true)
+            {
+                WriteLine($"\nGuessed: {zahlGuess}");
+                i++;
+                if (zahlGuess == rndZahl)
+                {
+                    WriteLine($"Deine Zahl ist {rndZahl}.\nIch habe {i} Versuche gebraucht sie zu erraten.");
+                    break;
+                }
+                else if (zahlGuess > rndZahl)
+                {
+                    WriteLine("Die gesuchte Zahl ist niedriger.");
+                    leZahl = leZahl / 2;
+                    zahlGuess = zahlGuess - leZahl;
+                    if (guessed.Contains(zahlGuess)) zahlGuess -= 1;
+                    guessed.Add(zahlGuess);
+                }
+                else
+                {
+                    WriteLine("Die gesuchte Zahl ist größer.");
+                    leZahl = leZahl / 2;
+                    zahlGuess = zahlGuess + leZahl;
+                    if (guessed.Contains(zahlGuess)) zahlGuess += 1;
+                    guessed.Add(zahlGuess);
                 }
             }
         }
     }
-
 }
