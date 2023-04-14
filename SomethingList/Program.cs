@@ -70,11 +70,11 @@ namespace SomethingList
         }
     }
     public class Programm2
-    {
-        static int zahlGuess;
+    { 
         public static void Main1()
         {
             WriteLine("Zahlen Raten:");
+            int zahlGuess;
             var i = 0;
             var rndZahl = RandomNumber();
             while (true) {
