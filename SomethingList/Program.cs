@@ -115,7 +115,7 @@ namespace SomethingList
             {
                 WriteLine("\nGebe eine Zahl zwischen 0 und 100 ein:");
                 var rndInput = ReadLine();
-                try { rndZahl = Convert.ToInt32(rndInput); break; } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
+                try { rndZahl = Convert.ToInt32(rndInput); if (rndZahl >= 0 && rndZahl <= 100) { break; } } catch (Exception e) { WriteLineColor($"<*red*>{e.Message}<*/*>"); }
             }
             ZahlErraten(rndZahl);
         }
