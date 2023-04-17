@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Drawing;
+using static System.Console;
 using static Yann.wc;
 
 namespace SomethingList
@@ -15,6 +16,8 @@ namespace SomethingList
                 WriteLine("'1'\t6 aus 49.");
                 WriteLine("'2'\tZahlen raten.");
                 WriteLine("'3'\tZahlen erraten lassen.");
+                WriteLine("'4'\tRechteck scheiß.");
+                WriteLine("'5'\t1mal1 is 3.");
                 WriteLine("'0'\tProgramm beenden.");
                 WriteLine("-------------------------------------------");
                 char select = ReadKey().KeyChar;
@@ -34,6 +37,14 @@ namespace SomethingList
                     case '3':
                         Clear();
                         Programm3.Main1();
+                        break;
+                    case '4':
+                        Clear();
+                        Programm4.Main1();
+                        break;
+                    case '5':
+                        Clear();
+                        Programm5.Main1();
                         break;
                 }
             }
@@ -187,6 +198,83 @@ namespace SomethingList
                     guessed.Add(zahlGuess);
                 }
             }
+        }
+    }
+    public class Programm4
+    {
+        public static void Main1()
+        {
+            WriteLine("Gebe Koordinaten an.\tExample: '6,1'");
+            string pointIn = ReadLine();
+            if (pointIn == "") { pointIn = "1,1"; }
+            string[] point = pointIn.Split(",");
+            int z = Convert.ToInt16(point[0]);
+            int u = Convert.ToInt16(point[1]);
+
+            Rectangle rectangle = new Rectangle(-2, 1, 8, 6);
+            Rectangle rectangle1 = new(-6, -2, 8, 5);
+
+            if (rectangle.Contains(z, u) && rectangle1.Contains(z, u)) { WriteLine("JA GEIL BEIDE"); }
+            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 0"); }
+            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 1"); }
+            else if (IsPointOnRectangleEdge(rectangle, z, u)) { WriteLine("JA GEIL 0"); }
+            else if (IsPointOnRectangleEdge(rectangle1, z, u)) { WriteLine("JA GEIL 1"); }
+            else { WriteLine("JA NEIN"); }
+            ReadKey();
+
+        }
+        public static bool IsPointOnRectangleEdge(Rectangle rect, int x, int y)
+        {
+            if (x == rect.Left || x == rect.Right)
+                return y >= rect.Top && y <= rect.Bottom;
+            if (y == rect.Top || y == rect.Bottom)
+                return x >= rect.Left && x <= rect.Right;
+            return false;
+        }
+    }
+    public class Programm5
+    {
+        public static void Main1()
+        {
+            Console.Title = "NÄHER!";
+            //Console.SetWindowSize(85, 22);
+            //Console.SetBufferSize(WindowWidth, WindowHeight);
+
+            var o = 0;
+            var k = 1;
+            for (int i = 0; i < 11; i++)
+            {
+                for (int j = 0; j < 11; j++)
+                {
+                    var res = i * j;
+                    if (i == 0)
+                    {
+                        var geg = o++ * 1;
+                        if (geg >= 1)
+                        {
+                            WriteColor($"<*red*>{geg.ToString().PadLeft(3)}<*/*> |\t");
+                        }
+                        else
+                        {
+                            Write("\t");
+                        }
+                    }
+                    else if (j == 0 && i >= 1)
+                    {
+                        var geg = k++ * 1;
+                        WriteColor($"<*red*>{geg.ToString().PadLeft(3)}<*/*> |\t");
+                    }
+
+                    else if (i >= 1 || j >= 1)
+                    {
+                        WriteColor($"<*green*>{res.ToString().PadLeft(3)}<*/*> |\t");
+                    }
+                }
+                WriteLine();
+                Write(new string('-', 85));
+                WriteLine();
+            }
+            ReadKey();
         }
     }
 }
