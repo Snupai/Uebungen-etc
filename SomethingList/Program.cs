@@ -214,21 +214,39 @@ namespace SomethingList
             Rectangle rectangle = new Rectangle(-2, 1, 8, 6);
             Rectangle rectangle1 = new(-6, -2, 8, 5);
 
-            if (rectangle.Contains(z, u) && rectangle1.Contains(z, u)) { WriteLine("JA GEIL BEIDE"); }
+            /*if (rectangle.Contains(z, u) && rectangle1.Contains(z, u)) { WriteLine("JA GEIL BEIDE"); }
             else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 0"); }
-            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 1"); }
-            else if (IsPointOnRectangleEdge(rectangle, z, u)) { WriteLine("JA GEIL 0"); }
-            else if (IsPointOnRectangleEdge(rectangle1, z, u)) { WriteLine("JA GEIL 1"); }
+            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 1"); }*/
+            if (IsPointInRectangle1(z, u) && IsPointInRectangle2(z, u)) { WriteLine("JA GEIL BEIDE!!!"); }
+            else if (IsPointInRectangle1(z, u)) { WriteLine("JA GEIL 0"); }
+            else if (IsPointInRectangle2(z, u)) { WriteLine("JA GEIL 1"); }
             else { WriteLine("JA NEIN"); }
             ReadKey();
 
         }
-        public static bool IsPointOnRectangleEdge(Rectangle rect, int x, int y)
+        /*public static bool IsPointInRectangle(Rectangle rect, int x, int y)
         {
-            if (x == rect.Left || x == rect.Right)
+            if (x >= rect.Left || x <= rect.Right)
                 return y >= rect.Top && y <= rect.Bottom;
-            if (y == rect.Top || y == rect.Bottom)
+            if (y >= rect.Top || y <= rect.Bottom)
                 return x >= rect.Left && x <= rect.Right;
+            return false;
+        }*/
+        
+        public static bool IsPointInRectangle1(int x, int y)
+        {
+            if (x >= -2 && x <= 6)
+                return y >= 1 && y <= 7;
+            /*if (y >= 1 || y <= 7)
+                return x >= -2 && x <= 6;*/
+            return false;
+        }
+        public static bool IsPointInRectangle2(int x, int y)
+        {
+            if (x >= -6 && x <= 2)
+                return y >= -2 && y <= 3;
+            /*if (y >= -2 || y <= 3)
+                return x >= -6 && x <= 2;*/
             return false;
         }
     }
