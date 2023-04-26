@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.ConstrainedExecution;
 using static System.Console;
 using static Yann.wc;
 
@@ -87,12 +88,12 @@ namespace SomethingList
                 Clear();
                 WriteLine("Press the key to run the according program.");
                 WriteLine("-------------------------------------------");
-                WriteLine("'1'\tAufgabe 1.");
-                WriteLine("'2'\tAufgabe 2.");
-                WriteLine("'3'\tAufgabe 3.");
-                WriteLine("'4'\tAufgabe 4.");
-                WriteLine("'5'\tAufgabe 5.");
-                WriteLine("'6'\tAufgabe 6.");
+                WriteLine("'1'\tAufgabe 1: Wertetabelle und Summe der Zahlen");
+                WriteLine("'2'\tAufgabe 2: Würfeln");
+                WriteLine("'3'\tAufgabe 3: Body-Mass-Index");
+                WriteLine("'4'\tAufgabe 4: ");
+                WriteLine("'5'\tAufgabe 5: ");
+                WriteLine("'6'\tAufgabe 6: ");
                 WriteLine("'0'\tZurück.");
                 WriteLine("-------------------------------------------");
                 char select = ReadKey().KeyChar;
@@ -378,8 +379,10 @@ namespace FSTAuP09_PD6_KA3_ {
     {
         public static void Main1()
         {
-            double erg = (100.0 / 5_000_000) * 1_666_000;
-            WriteLine(erg);
+            int[] counts = CheckList(RandomList());
+            WriteLine($"Die Zahlen -7 bis -3 gibt es {counts[0]}mal. Das sind {RelativeMenge(counts[0]):N2}% der Zahlen.");
+            WriteLine($"Die Zahlen -2 bis +2 gibt es {counts[1]}mal. Das sind {RelativeMenge(counts[1]):N2}% der Zahlen.");
+            WriteLine($"Die Zahlen +3 bis +7 gibt es {counts[2]}mal. Das sind {RelativeMenge(counts[2]):N2}% der Zahlen.");
             ReadKey();
         }
         static List<int> RandomList()
@@ -390,14 +393,71 @@ namespace FSTAuP09_PD6_KA3_ {
             {
                 list.Add(rnd.Next(-7, 7 + 1));
             }
+            list.Sort();
             return list;
+        }
+        static int[] CheckList(List<int> list)
+        {
+            int[] actualCount = new int[3];
+            List<int> countAmKleinsten = new();
+            List<int> countMitte = new();
+            List<int> countAmGrößten = new();
+            foreach (int n in list)
+            {
+                if (n <= -3) 
+                {
+                    countAmKleinsten.Add(n);
+                }
+                else if (n >= 3)
+                {
+                    countAmGrößten.Add(n);
+                }
+                else
+                {
+                    countMitte.Add(n);
+                }
+            }
+            actualCount[0] = countAmKleinsten.Count;
+            actualCount[1] = countMitte.Count;
+            actualCount[2] = countAmGrößten.Count;
+            countAmKleinsten.Clear();
+            countMitte.Clear();
+            countAmGrößten.Clear();
+            return actualCount;
+        }
+        static double RelativeMenge(int count)
+        {
+            return (100.0 / 5_000_000) * count;
         }
     }
     public class Programm3
     {
         public static void Main1()
         {
-
+            while (true)
+            {
+                double gewicht = 0;
+                double größe = 0;
+                Write("Geben Sie ihr Gewicht in kg an: ");
+                try { gewicht = Convert.ToDouble(ReadLine()); } catch (Exception e) { Clear(); WriteLine("Falsche Eingabe bitte gebe nur Ganzzahlen oder Kommazahlen an."); }
+                Write("\nGeben Sie ihre Größe in m an: ");
+                try { größe = Convert.ToDouble(ReadLine()); } catch (Exception e) { Clear(); WriteLine("Falsche Eingabe bitte gebe nur Ganzzahlen oder Kommazahlen an."); }
+                Clear();
+                WriteLine($"Ihr BMI ist {BMIBerechnen(gewicht, größe):N2}\n\nMöchten Sie eine weitere berechnung durchführen? 'ja' oder 'nein'");
+                var eingabe = ReadLine();
+                if (eingabe != "ja")
+                {
+                    break;
+                }
+                else
+                {
+                    Clear();
+                }
+            }
+        }
+        static double BMIBerechnen(double gewicht, double größe)
+        {
+            return gewicht / Math.Pow(größe, 2);
         }
     }
     public class Programm4
