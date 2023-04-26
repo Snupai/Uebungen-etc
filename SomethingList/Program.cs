@@ -898,6 +898,7 @@ namespace FSTInf21_L08_KA2_
     {
         public static void Main1()
         {
+            WriteLine("Hell nah!");
             ReadKey();
         }
     }
