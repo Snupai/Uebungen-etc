@@ -13,11 +13,8 @@ namespace SomethingList
                 Clear();
                 WriteLine("Press the key to run the according program.");
                 WriteLine("-------------------------------------------");
-                WriteLine("'1'\t6 aus 49.");
-                WriteLine("'2'\tZahlen raten.");
-                WriteLine("'3'\tZahlen erraten lassen.");
-                WriteLine("'4'\tRechteck scheiß.");
-                WriteLine("'5'\t1mal1 is 3.");
+                WriteLine("'1'\tidk tests.");
+                WriteLine("'2'\tFSTAuP09_PD6_KA3");
                 WriteLine("'0'\tProgramm beenden.");
                 WriteLine("-------------------------------------------");
                 char select = ReadKey().KeyChar;
@@ -28,28 +25,110 @@ namespace SomethingList
                         break;
                     case '1':
                         Clear();
-                        Programm1.Main1();
+                        idk_test();
                         break;
                     case '2':
                         Clear();
-                        Programm2.Main1();
-                        break;
-                    case '3':
-                        Clear();
-                        Programm3.Main1();
-                        break;
-                    case '4':
-                        Clear();
-                        Programm4.Main1();
-                        break;
-                    case '5':
-                        Clear();
-                        Programm5.Main1();
+                        FSTAuP09_PD6_KA3();
                         break;
                 }
             }
         }
-
+        static void idk_test()
+        {
+            bool zurück = false;
+            while (true)
+            {
+                Clear();
+                WriteLine("Press the key to run the according program.");
+                WriteLine("-------------------------------------------");
+                WriteLine("'1'\t6 aus 49.");
+                WriteLine("'2'\tZahlen raten.");
+                WriteLine("'3'\tZahlen erraten lassen.");
+                WriteLine("'4'\tRechteck scheiß.");
+                WriteLine("'5'\t1mal1 is 3.");
+                WriteLine("'0'\tZurück.");
+                WriteLine("-------------------------------------------");
+                char select = ReadKey().KeyChar;
+                switch (select)
+                {
+                    case '0':
+                        zurück = true;
+                        break;
+                    case '1':
+                        Clear();
+                        idk_test_.Programm1.Main1();
+                        break;
+                    case '2':
+                        Clear();
+                        idk_test_.Programm2.Main1();
+                        break;
+                    case '3':
+                        Clear();
+                        idk_test_.Programm3.Main1();
+                        break;
+                    case '4':
+                        Clear();
+                        idk_test_.Programm4.Main1();
+                        break;
+                    case '5':
+                        Clear();
+                        idk_test_.Programm5.Main1();
+                        break;
+                }
+                if (zurück == true) { break; }
+            }
+        }
+        static void FSTAuP09_PD6_KA3()
+        {
+            bool zurück = false;
+            while (true)
+            {
+                Clear();
+                WriteLine("Press the key to run the according program.");
+                WriteLine("-------------------------------------------");
+                WriteLine("'1'\tAufgabe 1.");
+                WriteLine("'2'\tAufgabe 2.");
+                WriteLine("'3'\tAufgabe 3.");
+                WriteLine("'4'\tAufgabe 4.");
+                WriteLine("'5'\tAufgabe 5.");
+                WriteLine("'6'\tAufgabe 6.");
+                WriteLine("'0'\tZurück.");
+                WriteLine("-------------------------------------------");
+                char select = ReadKey().KeyChar;
+                switch (select)
+                {
+                    case '0':
+                        zurück = true;
+                        break;
+                    case '1':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm1.Main1();
+                        break;
+                    case '2':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm2.Main1();
+                        break;
+                    case '3':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm3.Main1();
+                        break;
+                    case '4':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm4.Main1();
+                        break;
+                    case '5':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm5.Main1();
+                        break;
+                    case '6':
+                        Clear();
+                        FSTAuP09_PD6_KA3_.Programm6.Main1();
+                        break;
+                }
+                if (zurück == true) { break; } 
+            }
+        }
         static void Test()
         {
             //
@@ -75,6 +154,10 @@ namespace SomethingList
             WriteLineColor("\nYou can see all possible colors above!\nThis is an example string for <*!red*>background color<*/!*> and <*red*>foreground color<*/*>.");
         }
     }
+}
+
+namespace idk_test_
+{
     public class Programm1
     {
         public static void Main1()
@@ -211,42 +294,22 @@ namespace SomethingList
             int z = Convert.ToInt16(point[0]);
             int u = Convert.ToInt16(point[1]);
 
-            Rectangle rectangle = new Rectangle(-2, 1, 8, 6);
-            Rectangle rectangle1 = new(-6, -2, 8, 5);
-
-            /*if (rectangle.Contains(z, u) && rectangle1.Contains(z, u)) { WriteLine("JA GEIL BEIDE"); }
-            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 0"); }
-            else if (rectangle.Contains(z, u)) { WriteLine("JA GEIL 1"); }*/
             if (IsPointInRectangle1(z, u) && IsPointInRectangle2(z, u)) { WriteLine("JA GEIL BEIDE!!!"); }
             else if (IsPointInRectangle1(z, u)) { WriteLine("JA GEIL 0"); }
             else if (IsPointInRectangle2(z, u)) { WriteLine("JA GEIL 1"); }
             else { WriteLine("JA NEIN"); }
             ReadKey();
-
         }
-        /*public static bool IsPointInRectangle(Rectangle rect, int x, int y)
-        {
-            if (x >= rect.Left || x <= rect.Right)
-                return y >= rect.Top && y <= rect.Bottom;
-            if (y >= rect.Top || y <= rect.Bottom)
-                return x >= rect.Left && x <= rect.Right;
-            return false;
-        }*/
-        
         public static bool IsPointInRectangle1(int x, int y)
         {
             if (x >= -2 && x <= 6)
                 return y >= 1 && y <= 7;
-            /*if (y >= 1 || y <= 7)
-                return x >= -2 && x <= 6;*/
             return false;
         }
         public static bool IsPointInRectangle2(int x, int y)
         {
             if (x >= -6 && x <= 2)
                 return y >= -2 && y <= 3;
-            /*if (y >= -2 || y <= 3)
-                return x >= -6 && x <= 2;*/
             return false;
         }
     }
@@ -293,6 +356,69 @@ namespace SomethingList
                 WriteLine();
             }
             ReadKey();
+        }
+    }
+}
+
+namespace FSTAuP09_PD6_KA3_ {
+    public class Programm1
+    {
+        public static void Main1()
+        {
+            double erg;
+            for (int i = 0; i < 9; i++)
+            {
+                erg = Math.Pow(2, i);
+                WriteLine($"2^{i} = {erg.ToString().PadLeft(3)}");
+            }
+            ReadKey();
+        }
+    }
+    public class Programm2
+    {
+        public static void Main1()
+        {
+            double erg = (100.0 / 5_000_000) * 1_666_000;
+            WriteLine(erg);
+            ReadKey();
+        }
+        static List<int> RandomList()
+        {
+            List<int> list = new();
+            Random rnd = new();
+            for (int i = 0; i <= 5 * Math.Pow(10, 6); i++)
+            {
+                list.Add(rnd.Next(-7, 7 + 1));
+            }
+            return list;
+        }
+    }
+    public class Programm3
+    {
+        public static void Main1()
+        {
+
+        }
+    }
+    public class Programm4
+    {
+        public static void Main1()
+        {
+
+        }
+    }
+    public class Programm5
+    {
+        public static void Main1()
+        {
+
+        }
+    }
+    public class Programm6
+    {
+        public static void Main1()
+        {
+
         }
     }
 }
