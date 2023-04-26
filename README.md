@@ -19,6 +19,8 @@
 1)	Was ist die Ausgabe der folgenden Codeabschnitte?
 2)	Bitte die Lücken füllen, damit der Wert von x fünfmal ausgegeben wird!
 3)	Würfeln 
+  a) 5mal Würfeln und Summe aus Augen
+  b) Wie oft Augenzahl bei 1.000.000 würfen
 4)	Zahlenraten 
 5)	Schaltjahr 
 6) Funktionstabelle 
